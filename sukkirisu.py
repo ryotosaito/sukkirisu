@@ -19,4 +19,4 @@ with urllib.request.urlopen(req) as res:
         rank = "ガッカリす"
     else:
         rank = data.find("p", class_="rankTxt").text
-    print(rank + ": " + data.find("p", class_="").text)
+    print(rank + ": " + data.find("p", class_="").text + "\tラッキーカラー: " + data.find("div", id = "color").text)
