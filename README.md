@@ -18,7 +18,7 @@ python sukkirisu.py 1 #sukkirisu search for January
 
 ## Slack slash command using AWS Lambda
 ### Preparation
-```
+```sh
 git clone https://github.com/ryotosaito/sukkirisu.git
 cd sukkirisu
 pip3 install -r requirements.txt -t .
