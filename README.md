@@ -30,10 +30,17 @@ zip -r sukkirisu.zip *
 
 ![setting sample](images/aws_apigateway.png)
 
-- Click `+ Add triger` → select `API Gateway`
+- Click `+ Add triger`
+- Select `API Gateway`
+- Settings
  - API: Create a new API
  - Security: Open
  - Additional Settings: None
+- Click `Add`
+ - Redirects to Designer pane
+- Click `API Gateway`
+- Scroll Down
+- Note down `API endpoint` URL in the API Gateway pane
 
 #### Function Code
 
@@ -43,3 +50,13 @@ zip -r sukkirisu.zip *
 - Runtime: Python 3.x
 - Handler: `sukkirisu.lambda_handler`
 
+### In your Slack API console
+
+![Slash Commands window](images/slack_slashlist.png)
+![setting sample](images/slack_settings.png)
+- Click `Create New Command` in Slash Commands
+- Settings
+ - Command: /sukkirisu
+ - Request URL: *noted API endpoint URL*
+ - Short Description: Today's sukkirisu
+ - Usage Hint: &lt;month in int&gt;
