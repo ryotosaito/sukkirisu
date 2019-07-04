@@ -24,3 +24,23 @@ cd sukkirisu/src
 pip3 install -r requirements.txt -t .
 zip -r sukkirisu.zip *
 ```
+
+### In your AWS console
+#### Lambda
+##### Designer
+
+![setting sample](images/aws_apigateway.png)
+
+- Click `+ Add triger` → select `API Gateway`
+ - API: Create a new API
+ - Security: Open
+ - Additional Settings: None
+
+##### Function Code
+
+![setting sample](images/aws_lambda.png)
+
+- Code entry type: Upload a .zip file (upload sukkirisu.zip created before)
+- Runtime: Python 3.x
+- Handler: `sukkirisu.lambda_handler`
+
