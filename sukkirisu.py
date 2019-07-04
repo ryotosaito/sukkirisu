@@ -17,7 +17,7 @@ def lambda_handler(event, context):
         'headers': {},
         'body': json.dumps({
             "response_type": "in_channel",
-            "text": get_sukkirisu
+            "text": result
         })
     }
 
