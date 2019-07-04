@@ -13,14 +13,14 @@ pip install -r requirements.txt
 
 ### Usage
 ```sh
-python sukkirisu.py 1 #sukkirisu search for January
+python src/sukkirisu.py 1 #sukkirisu search for January
 ```
 
 ## Slack slash command using AWS Lambda
 ### Preparation
 ```sh
 git clone https://github.com/ryotosaito/sukkirisu.git
-cd sukkirisu
+cd sukkirisu/src
 pip3 install -r requirements.txt -t .
 zip -r sukkirisu.zip *
 ```
