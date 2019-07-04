@@ -1,4 +1,6 @@
 # sukkirisu
+
+![slack sample](images/slack_sample.png)
 Today's sukkirisu (スッキリす, www.ntv.co.jp/sukkiri/sukkirisu/index.html) reporter
 
 ## Command line
