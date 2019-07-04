@@ -25,9 +25,8 @@ pip3 install -r requirements.txt -t .
 zip -r sukkirisu.zip *
 ```
 
-### In your AWS console
-#### Lambda
-##### Designer
+### In your AWS console: Lambda
+#### Designer
 
 ![setting sample](images/aws_apigateway.png)
 
@@ -36,7 +35,7 @@ zip -r sukkirisu.zip *
  - Security: Open
  - Additional Settings: None
 
-##### Function Code
+#### Function Code
 
 ![setting sample](images/aws_lambda.png)
 
