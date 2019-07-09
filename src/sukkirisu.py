@@ -58,7 +58,7 @@ def get_sukkirisu(birth_month):
             'rank': rank,
             'type': type_,
             'description': data.find("p", class_="").text,
-            'lucky_color': data.find("div", id = "color").text
+            'lucky_color': data.find("div", id="color").text
         }
 
 if __name__ == '__main__':
