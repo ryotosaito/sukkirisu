@@ -4,13 +4,14 @@ from bs4 import BeautifulSoup
 import json
 import urllib.parse
 import urllib.request
+import re
 import sys
 
 url = 'http://www.ntv.co.jp/sukkiri/sukkirisu/index.html'
 
 def lambda_handler(event, context):
-    month = int(urllib.parse.parse_qs(event['body'])['text'][0].rstrip())
-    result = get_sukkirisu(month)
+    birth_month = int(urllib.parse.parse_qs(event['body'])['text'][0].rstrip())
+    result = get_sukkirisu(birth_month)
     text = format_text(result)
     return {
         'isBase64Encoded': False,
@@ -23,20 +24,21 @@ def lambda_handler(event, context):
     }
 
 def format_text(result):
-    return str(result["month"]) + "月: " + result["type"] \
+    return str(result["birth_month"]) + "月: " + result["type"] \
             + (("(" + str(result["rank"]) + "位)") if 2 <= result["rank"] <= 11 else '') + "\n" \
             + result["description"] + "\n" \
-            + "ラッキーカラー: " + result["lucky_color"]
+            + "ラッキーカラー: " + result["lucky_color"] + "\n" \
+            + "(更新日: " + "/".join(result["modified_date"]) + ")"
 
-def get_sukkirisu(month):
-    if type(month) != int:
-        raise TypeError("Month must be int.")
+def get_sukkirisu(birth_month):
+    if type(birth_month) != int:
+        raise TypeError("birth_month must be int.")
 
     req = urllib.request.Request(url)
     with urllib.request.urlopen(req) as res:
         body = res.read()
         soup = BeautifulSoup(body, features="html.parser")
-        data = soup.find(id=("month"+str(month)))
+        data = soup.find(id=("month"+str(birth_month)))
         if 'type1' in data['class']:
             rank = 1
             type_ = "超スッキリす"
@@ -51,7 +53,8 @@ def get_sukkirisu(month):
             elif 'type3' in data['class']:
                 type_ = "まぁまぁスッキリす"
         return {
-            'month': month,
+            'birth_month': birth_month,
+            'modified_date': re.findall(r"\d+", soup.find("span", class_="date").text),
             'rank': rank,
             'type': type_,
             'description': data.find("p", class_="").text,
