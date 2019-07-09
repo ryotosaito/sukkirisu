@@ -62,5 +62,8 @@ def get_sukkirisu(birth_month):
         }
 
 if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        sys.stderr.write("argument error: " + sys.argv[0] + " <month in int>\n")
+        sys.exit(1)
     result = get_sukkirisu(int(sys.argv[1]))
     print(format_text(result))
