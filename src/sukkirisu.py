@@ -30,6 +30,17 @@ def format_text(result):
             + "ラッキーカラー: " + result["lucky_color"] + "\n" \
             + "(更新日: " + "/".join(result["modified_date"]) + ")"
 
+# argument:
+#   birth_month: month number you want to search sukkirisu result
+# return:
+#   dict: {
+#       birth_month: int: argument
+#       modified_date: list: [month, date of month]
+#       rank: int: sukkirisu rank
+#       type: str: "超スッキリす" or "スッキリす" or "まぁまぁスッキリす" or "ガッカリす"
+#       description: str: fortune description
+#       lucky_color: str: lucky color
+#   }
 def get_sukkirisu(birth_month):
     if type(birth_month) != int:
         raise TypeError("birth_month must be int.")
