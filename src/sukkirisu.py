@@ -24,11 +24,13 @@ def lambda_handler(event, context):
     }
 
 def format_text(result):
-    return str(result["birth_month"]) + "月: " + result["type"] \
-            + (("(" + str(result["rank"]) + "位)") if 2 <= result["rank"] <= 11 else '') + "\n" \
-            + result["description"] + "\n" \
-            + "ラッキーカラー: " + result["lucky_color"] + "\n" \
-            + "(更新日: " + "/".join(result["modified_date"]) + ")"
+    return "{}月: {}\n{}\nラッキーカラー: {}\n(更新日: {})".format(
+                result["birth_month"],
+                result["type"] + (("(" + str(result["rank"]) + "位)") if 2 <= result["rank"] <= 11 else ''),
+                result["description"],
+                result["lucky_color"],
+                "/".join(result["modified_date"])
+            )
 
 # argument:
 #   birth_month: month number you want to search sukkirisu result
@@ -74,7 +76,7 @@ def get_sukkirisu(birth_month):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        sys.stderr.write("argument error: " + sys.argv[0] + " <month in int>\n")
+        sys.stderr.write("argument error: {} <month in int>\n".format(sys.argv[0]))
         sys.exit(1)
     result = get_sukkirisu(int(sys.argv[1]))
     print(format_text(result))
